@@ -39,11 +39,13 @@ func handleSignal() {
 var ctx, cancel = context.WithCancel(context.Background())
 var flagSpotAddress string
 var flagFuturesAddress string
+var flagDeliveryAddress string 
 var flagDebug bool
 
 func main() {
 	flag.StringVar(&flagSpotAddress, "s", ":8090", "spot bind address.")
 	flag.StringVar(&flagFuturesAddress, "f", ":8091", "futures bind address.")
+	flag.StringVar(&flagDeliveryAddress, "d", ":8092", "delivery bind address.")// 币本位合约
 	flag.BoolVar(&flagDebug, "v", false, "print debug log.")
 	flag.Parse()
 
@@ -59,6 +61,7 @@ func main() {
 
 	go startProxy(ctx, flagSpotAddress, service.SPOT)
 	go startProxy(ctx, flagFuturesAddress, service.FUTURES)
+	go startProxy(ctx, flagDeliveryAddress, service.DELIVERY)
 
 	<-ctx.Done()
 

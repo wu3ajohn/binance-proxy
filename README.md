@@ -25,10 +25,12 @@ local `klines` ,`depth` ,`exchangeInfo`,`24hour`
 
 **Command**
 ```
-      -f string
-            futures bind address. (default ":8091")
       -s string
             spot bind address. (default ":8090")
+      -f string
+            futures bind address. (default ":8091")
+      -d string
+            delivery bind address. (default ":8092")
       -v    print debug log.
 ```
 
@@ -43,7 +45,8 @@ local `klines` ,`depth` ,`exchangeInfo`,`24hour`
             "urls": {
                 "api": {
                     "public": "http://127.0.01:8090/api/v3", # spot add this 
-                    "fapiPublic": "http://127.0.01:8091/fapi/v1" # futures add this
+                    "fapiPublic": "http://127.0.01:8091/fapi/v1", # futures add this
+                    "dapiPublic": "http://127.0.01:8092/dapi/v1" # futures add this
                 }
             }
         },

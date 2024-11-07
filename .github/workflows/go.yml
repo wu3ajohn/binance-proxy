@@ -21,20 +21,26 @@ jobs:
       working-directory: ./src/binance-proxy
       run: go build -o ../../binance-proxy .
 
-    - name: Build windows
-      working-directory: ./src/binance-proxy
-      run: CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ../../binance-proxy-windows.exe .
+    # - name: Build windows
+    #   working-directory: ./src/binance-proxy
+    #   run: CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ../../binance-proxy-windows.exe .
 
-    - name: Build darwin
-      working-directory: ./src/binance-proxy
-      run: CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ../../binance-proxy-darwin .
+    # - name: Build darwin
+    #   working-directory: ./src/binance-proxy
+    #   run: CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ../../binance-proxy-darwin .
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
+    # - name: Release
+    #   uses: softprops/action-gh-release@v1
+    #   with:
+    #     files: |
+    #       binance-proxy
+    #       binance-proxy-windows.exe
+    #       binance-proxy-darwin
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
       with:
-        files: |
-          binance-proxy
-          binance-proxy-windows.exe
-          binance-proxy-darwin
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: binance-proxy
+        path: binance-proxy

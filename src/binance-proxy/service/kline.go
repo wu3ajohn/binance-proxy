@@ -12,6 +12,7 @@ import (
 
 	spot "github.com/adshao/go-binance/v2"
 	futures "github.com/adshao/go-binance/v2/futures"
+	delivery "github.com/adshao/go-binance/v2/delivery"
 )
 
 type Kline struct {

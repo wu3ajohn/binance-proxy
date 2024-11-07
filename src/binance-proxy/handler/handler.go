@@ -30,16 +30,16 @@ type Handler struct {
 
 func (s *Handler) Router(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
-	case "/api/v3/klines", "/fapi/v1/klines":
+	case "/api/v3/klines", "/fapi/v1/klines", "/dapi/v1/klines":
 		s.klines(w, r)
 
-	case "/api/v3/depth", "/fapi/v1/depth":
+	case "/api/v3/depth", "/fapi/v1/depth", "/dapi/v1/depth":
 		s.depth(w, r)
 
-	case "/api/v3/ticker/24hr", "/fapi/v1/ticker/24hr":
+	case "/api/v3/ticker/24hr", "/fapi/v1/ticker/24hr", "/dapi/v1/ticker/24hr":
 		s.ticker(w, r)
 
-	case "/api/v3/exchangeInfo", "/fapi/v1/exchangeInfo":
+	case "/api/v3/exchangeInfo", "/fapi/v1/exchangeInfo", "/dapi/v1/exchangeInfo":
 		s.exchangeInfo(w, r)
 
 	default:
@@ -56,11 +56,13 @@ func (s *Handler) reverseProxy(w http.ResponseWriter, r *http.Request) {
 	if s.class == service.SPOT {
 		r.Host = "api.binance.com"
 		u, _ = url.Parse("https://api.binance.com")
-	} else {
+	} else if s.class == service.FUTURES {
 		r.Host = "fapi.binance.com"
 		u, _ = url.Parse("https://fapi.binance.com")
+	} else {
+		r.Host = "dapi.binance.com"
+		u, _ = url.Parse("https://dapi.binance.com")
 	}
-
 	proxy := httputil.NewSingleHostReverseProxy(u)
 
 	proxy.ServeHTTP(w, r)
