@@ -1,11 +1,11 @@
-name: Release
+name: Release-windows
 
 on:  
   push:
     tags:
       - '*'
-    branches:
-      - '*'
+    # branches:
+    #   - '*'
   workflow_dispatch:
 
 jobs:

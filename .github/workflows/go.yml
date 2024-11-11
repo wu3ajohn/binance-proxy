@@ -1,11 +1,11 @@
-name: Release
+name: Release-Linux
 
 on:  
   push:
     tags:
       - '*'
-    branches:
-      - '*'
+    # branches:
+    #   - '*'
   workflow_dispatch:
 
 jobs:
