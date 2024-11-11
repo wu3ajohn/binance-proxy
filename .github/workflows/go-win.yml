@@ -45,5 +45,5 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: binance-proxy
-        path: binance-proxy
+        name: binance-proxy.zip
+        path: binance-proxy-windows.exe
