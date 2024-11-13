@@ -44,9 +44,9 @@ local `klines` ,`depth` ,`exchangeInfo`,`24hour`
             "enableRateLimit": false,
             "urls": {
                 "api": {
-                    "public": "http://127.0.01:8090/api/v3", # spot add this 
-                    "fapiPublic": "http://127.0.01:8091/fapi/v1", # futures add this
-                    "dapiPublic": "http://127.0.01:8092/dapi/v1" # futures add this
+                    "public": "http://127.0.0.1:8090/api/v3", # spot add this 
+                    "fapiPublic": "http://127.0.0.1:8091/fapi/v1", # futures add this
+                    "dapiPublic": "http://127.0.0.1:8092/dapi/v1" # futures add this
                 }
             }
         },
