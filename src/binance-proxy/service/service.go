@@ -58,7 +58,7 @@ func (s *Service) autoRemoveExpired() {
 		aliveKlines[si.Symbol] = struct{}{}
 
 		if t, ok := s.lastGetKlines.Load(si); ok {
-			if time.Now().Sub(t.(time.Time)) > 2*INTERVAL_2_DURATION[si.Interval] {
+			if time.Now().Sub(t.(time.Time)) > 4*INTERVAL_2_DURATION[si.Interval] {
 				log.Debugf("%s.Kline srv expired!Removed", si)
 				s.lastGetKlines.Delete(si)
 
@@ -76,7 +76,7 @@ func (s *Service) autoRemoveExpired() {
 		srv := v.(*DepthSrv)
 
 		if t, ok := s.lastGetDepth.Load(si); ok {
-			if time.Now().Sub(t.(time.Time)) > 2*time.Minute {
+			if time.Now().Sub(t.(time.Time)) > 4*time.Minute {
 				log.Debugf("%s.Depth srv expired!Removed", si)
 				s.lastGetDepth.Delete(si)
 
@@ -94,7 +94,7 @@ func (s *Service) autoRemoveExpired() {
 		srv := v.(*TickerSrv)
 
 		if t, ok := s.lastGetTicker.Load(si); ok {
-			if time.Now().Sub(t.(time.Time)) > 2*time.Minute {
+			if time.Now().Sub(t.(time.Time)) > 4*time.Minute {
 				log.Debugf("%s.Ticker srv expired!Removed", si)
 				s.lastGetTicker.Delete(si)
 
