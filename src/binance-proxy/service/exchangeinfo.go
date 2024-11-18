@@ -29,7 +29,7 @@ type ExchangeInfoSrv struct {
 func NewExchangeInfoSrv(ctx context.Context, si *symbolInterval) *ExchangeInfoSrv {
 	s := &ExchangeInfoSrv{
 		si:         si,
-		refreshDur: 600 * time.Second,
+		refreshDur: 3600 * time.Second,
 	}
 	s.ctx, s.cancel = context.WithCancel(ctx)
 	s.initCtx, s.initDone = context.WithCancel(context.Background())
