@@ -40,12 +40,14 @@ var ctx, cancel = context.WithCancel(context.Background())
 var flagSpotAddress string
 var flagFuturesAddress string
 var flagDeliveryAddress string 
+var flagAccountAddress string
 var flagDebug bool
 
 func main() {
 	flag.StringVar(&flagSpotAddress, "s", ":8090", "spot bind address.")
 	flag.StringVar(&flagFuturesAddress, "f", ":8091", "futures bind address.")
 	flag.StringVar(&flagDeliveryAddress, "d", ":8092", "delivery bind address.")// 币本位合约
+	flag.StringVar(&flagAccountAddress, "a", ":8093", "account bind address.")// 账户接口
 	flag.BoolVar(&flagDebug, "v", false, "print debug log.")
 	flag.Parse()
 
@@ -54,7 +56,7 @@ func main() {
 	}
 
 	go func() {
-		http.ListenAndServe("0.0.0.0:8888", nil)
+		http.ListenAndServe("0.0.0.0:65088", nil)
 	}()
 
 	go handleSignal()
@@ -62,6 +64,7 @@ func main() {
 	go startProxy(ctx, flagSpotAddress, service.SPOT)
 	go startProxy(ctx, flagFuturesAddress, service.FUTURES)
 	go startProxy(ctx, flagDeliveryAddress, service.DELIVERY)
+	go startProxy(ctx, flagAccountAddress, service.ACCOUNT)
 
 	<-ctx.Done()
 

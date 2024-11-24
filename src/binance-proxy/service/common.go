@@ -31,6 +31,8 @@ var SPOT Class = 0
 var FUTURES Class = 1
 // 币本位合约
 var DELIVERY Class = 3 
+// 账户接口
+var ACCOUNT Class = 4 
 
 func NewSymbolInterval(class Class, symbol, interval string) *symbolInterval {
 	return &symbolInterval{Class: class, Symbol: symbol, Interval: interval}

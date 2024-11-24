@@ -31,6 +31,8 @@ local `klines` ,`depth` ,`exchangeInfo`,`24hour`
             futures bind address. (default ":8091")
       -d string
             delivery bind address. (default ":8092")
+      -a string
+            账户接口. (default ":8093")          
       -v    print debug log.
 ```
 
@@ -46,7 +48,8 @@ local `klines` ,`depth` ,`exchangeInfo`,`24hour`
                 "api": {
                     "public": "http://127.0.0.1:8090/api/v3", # spot add this 
                     "fapiPublic": "http://127.0.0.1:8091/fapi/v1", # futures add this
-                    "dapiPublic": "http://127.0.0.1:8092/dapi/v1" # futures add this
+                    "dapiPublic": "http://127.0.0.1:8092/dapi/v1", # futures add this
+                    "sapi": "http://127.0.0.1:8093/sapi/v1", # 账户接口
                 }
             }
         },
